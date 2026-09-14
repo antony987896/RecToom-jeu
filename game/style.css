@@ -1,0 +1,9 @@
+/* game/style.css */
+html,body { height:100%; margin:0; background:#000; color:#0f0; font-family:Arial, sans-serif; }
+#gameCanvas { width:100%; height:100%; display:block; }
+.overlay { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.75); z-index:10; }
+.box { background:#071; padding:20px; border-radius:8px; width:320px; text-align:center; color:#000; }
+.hidden { display:none; }
+input { width:100%; padding:8px; margin:8px 0; border-radius:6px; border:none; }
+button { padding:10px 14px; background:#000; color:#0f0; border-radius:6px; cursor:pointer; font-weight:bold; }
+#progress { font-size:20px; margin-top:12px; color:#0f0; }

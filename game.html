@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>RecToom — Jeu (prototype)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="overlay" class="overlay">
+    <div id="loginBox" class="box">
+      <h2>Se connecter au jeu</h2>
+      <input id="email" type="email" placeholder="Adresse email">
+      <input id="password" type="password" placeholder="Mot de passe">
+      <button id="loginBtn">Connexion</button>
+      <p id="message"></p>
+    </div>
+
+    <div id="loadingBox" class="box hidden">
+      <h2>Loading...</h2>
+      <div id="progress">0%</div>
+    </div>
+  </div>
+
+  <canvas id="gameCanvas"></canvas>
+
+  <script type="module">
+    import { login, onAuthChange } from './auth.js';
+    import { startGame, setLoadingProgress } from './game.js';
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      document.getElementById('message').innerText = '';
+      if (!email || !password) {
+        document.getElementById('message').innerText = 'Remplis tous les champs.';
+        return;
+      }
+      try {
+        await login(email, password);
+      } catch (err) {
+        document.getElementById('message').innerText = 'Erreur : ' + err.message;
+      }
+    });
+
+    onAuthChange((user) => {
+      if (user) {
+        document.getElementById('loginBox').classList.add('hidden');
+        document.getElementById('loadingBox').classList.remove('hidden');
+        let p = 0;
+        const t = setInterval(() => {
+          p += 10;
+          setLoadingProgress(p);
+          if (p >= 100) {
+            clearInterval(t);
+            document.getElementById('overlay').classList.add('hidden');
+            startGame();
+          }
+        }, 150);
+      } else {
+        document.getElementById('loginBox').classList.remove('hidden');
+        document.getElementById('loadingBox').classList.add('hidden');
+        document.getElementById('overlay').classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
