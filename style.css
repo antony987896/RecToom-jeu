@@ -1,9 +1,23 @@
-/* style.css */
-html,body { height:100%; margin:0; background:#000; color:#0f0; font-family:Arial, sans-serif; }
-#gameCanvas { width:100%; height:100%; display:block; }
-.overlay { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.75); z-index:10; }
-.box { background:#071; padding:20px; border-radius:8px; width:320px; text-align:center; color:#000; }
-.hidden { display:none; }
-input { width:100%; padding:8px; margin:8px 0; border-radius:6px; border:none; }
-button { padding:10px 14px; background:#000; color:#0f0; border-radius:6px; cursor:pointer; font-weight:bold; }
-#progress { font-size:20px; margin-top:12px; color:#0f0; }
+/* Existing site styles (kept as-is) */
+
+/* Login UI styles */
+.login-bg {
+  position: fixed; inset: 0;
+  background-image: url('/login-background.webp');
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.95) contrast(0.9);
+  z-index: -2;
+}
+.login-overlay {
+  position: fixed; inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65));
+  z-index: -1;
+}
+.login-card {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.45); padding: 28px; border-radius: 12px; color: #fff;
+  text-align: center; width: min(90%, 420px); box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+#play-btn { padding: 12px 20px; font-size: 16px; margin-top: 12px; }
+#mute-btn { margin-left: 8px; padding: 8px; }
