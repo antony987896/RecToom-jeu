@@ -1,11 +1,14 @@
 /* Existing site styles (kept as-is) */
 
-/* Login UI styles */
+/* Login UI styles (fixed: use relative path for Pages and local) */
 .login-bg {
   position: fixed; inset: 0;
-  background-image: url('/login-background.webp');
+  /* Use relative path so GitHub Pages serves: /<repo>/login-background.webp */
+  background-image: url('login-background.webp');
   background-size: cover;
   background-position: center;
+  /* fallback color if image missing */
+  background-color: #000;
   filter: saturate(0.95) contrast(0.9);
   z-index: -2;
 }
@@ -21,3 +24,6 @@
 }
 #play-btn { padding: 12px 20px; font-size: 16px; margin-top: 12px; }
 #mute-btn { margin-left: 8px; padding: 8px; }
+
+/* Utility: reveal canvas / content behind overlay when game fails to start */
+.login-hidden-overlay { z-index: -3 !important; }
